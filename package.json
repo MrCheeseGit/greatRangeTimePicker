@@ -1,0 +1,29 @@
+{
+  "name": "wappler-great-range-time-picker",
+  "version": "0.1.0",
+  "description": "Wappler App Connect date and time range picker for bookings and events",
+  "main": "includes/dmx-great-range-time-picker.js",
+  "homepage": "https://www.mrcheese.co.uk",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/MrCheeseGit/greatRangeTimePicker.git"
+  },
+  "keywords": [
+    "wappler",
+    "wappler-extension",
+    "app-connect",
+    "datetime",
+    "date-range",
+    "time-picker",
+    "bookings",
+    "events",
+    "calendar",
+    "mrcheese"
+  ],
+  "author": "Mr Cheese",
+  "license": "SEE LICENSE IN LICENSE",
+  "wappler": {
+    "module": "greatrangetime",
+    "version": "0.1.0"
+  }
+}

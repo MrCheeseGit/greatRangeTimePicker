@@ -1,0 +1,310 @@
+{
+  "components": [
+    {
+      "type": "dmx-great-range-time-picker",
+      "selector": "dmx-great-range-time-picker, [is=dmx-great-range-time-picker]",
+      "framework": "bootstrap5",
+      "groupTitle": "Mr Cheese",
+      "groupIcon": "fas fa-lg fa-cheese comp-exec",
+      "title": "Great Range Time Picker: @@id@@",
+      "icon": "fas fa-lg fa-calendar-alt comp-data",
+      "state": "opened",
+      "anyParent": true,
+      "template": "<dmx-great-range-time-picker id=\"@@id@@\" default-preset=\"custom\" timezone=\"UTC\" locale=\"en-GB\" color-scheme=\"dark\" placement=\"modal\" default-time-from=\"00:00\" default-time-to=\"23:59\" design-label=\"Great Range Time Picker\"><div class=\"gr-date-range--design gr-date-range--dark\" data-gr-host>Great Range Time Picker</div></dmx-great-range-time-picker>",
+      "baseName": "greatRangeTime",
+      "help": "Date and time range picker for bookings and events. Dual calendar with start/end date and time fields. Optional preset sidebar (off by default). Popover portaled to document.body. Bind {{greatRangeTime.data.dateFrom}}, {{greatRangeTime.data.timeFrom}}, etc., or wire dmx-on:changed.",
+      "properties": [
+        {
+          "group": "Great Range Time Picker",
+          "variables": [
+            {
+              "name": "compId",
+              "optionName": "id",
+              "attribute": "id",
+              "title": "ID",
+              "type": "text",
+              "required": true,
+              "defaultValue": ""
+            },
+            {
+              "name": "dateFrom",
+              "optionName": "dateFrom",
+              "attribute": "date-from",
+              "title": "Start date (YYYY-MM-DD)",
+              "type": "text",
+              "defaultValue": "",
+              "dataBindings": true
+            },
+            {
+              "name": "dateTo",
+              "optionName": "dateTo",
+              "attribute": "date-to",
+              "title": "End date (YYYY-MM-DD)",
+              "type": "text",
+              "defaultValue": "",
+              "dataBindings": true
+            },
+            {
+              "name": "timeFrom",
+              "optionName": "timeFrom",
+              "attribute": "time-from",
+              "title": "Start time (HH:MM)",
+              "type": "text",
+              "defaultValue": "",
+              "dataBindings": true
+            },
+            {
+              "name": "timeTo",
+              "optionName": "timeTo",
+              "attribute": "time-to",
+              "title": "End time (HH:MM)",
+              "type": "text",
+              "defaultValue": "",
+              "dataBindings": true
+            },
+            {
+              "name": "defaultTimeFrom",
+              "optionName": "defaultTimeFrom",
+              "attribute": "default-time-from",
+              "title": "Default start time",
+              "type": "text",
+              "defaultValue": "00:00",
+              "help": "Used when Start time is empty (24-hour HH:MM)."
+            },
+            {
+              "name": "defaultTimeTo",
+              "optionName": "defaultTimeTo",
+              "attribute": "default-time-to",
+              "title": "Default end time",
+              "type": "text",
+              "defaultValue": "23:59",
+              "help": "Used when End time is empty (24-hour HH:MM)."
+            },
+            {
+              "name": "timeStep",
+              "optionName": "timeStep",
+              "attribute": "time-step",
+              "title": "Time step (seconds)",
+              "type": "text",
+              "defaultValue": "900",
+              "help": "Native time input step in seconds (900 = 15 minutes)."
+            },
+            {
+              "name": "showPresets",
+              "optionName": "showPresets",
+              "attribute": "show-presets",
+              "title": "Show preset sidebar",
+              "type": "boolean",
+              "defaultValue": false,
+              "help": "Enable for report-style filters. Bookings and events usually leave this off."
+            },
+            {
+              "name": "defaultPreset",
+              "optionName": "defaultPreset",
+              "attribute": "default-preset",
+              "title": "Default date range",
+              "type": "droplist",
+              "defaultValue": "custom",
+              "help": "Initial range when Start/End date are empty. Custom uses explicit dates or today through +7 days.",
+              "values": [
+                { "title": "Today", "value": "today" },
+                { "title": "Yesterday", "value": "yesterday" },
+                { "title": "Last 7 days", "value": "last7" },
+                { "title": "Last 28 days", "value": "last28" },
+                { "title": "Last 30 days", "value": "last30" },
+                { "title": "This month", "value": "thisMonth" },
+                { "title": "Last month", "value": "lastMonth" },
+                { "title": "Next 7 days", "value": "next7" },
+                { "title": "Next 30 days", "value": "next30" },
+                { "title": "Next 90 days", "value": "next90" },
+                { "title": "Year to date", "value": "ytd" },
+                { "title": "Last year", "value": "lastYear" },
+                { "title": "Custom (use date fields)", "value": "custom" }
+              ]
+            },
+            {
+              "name": "timezone",
+              "optionName": "timezone",
+              "attribute": "timezone",
+              "title": "IANA timezone",
+              "type": "text",
+              "defaultValue": "UTC",
+              "help": "Used for Today and preset boundaries (e.g. Europe/Lisbon)."
+            },
+            {
+              "name": "locale",
+              "optionName": "locale",
+              "attribute": "locale",
+              "title": "Locale",
+              "type": "text",
+              "defaultValue": "en-GB",
+              "help": "Intl formatting for month titles. Used for trigger dates when Display format is Locale default."
+            },
+            {
+              "name": "displayFormat",
+              "optionName": "displayFormat",
+              "attribute": "display-format",
+              "title": "Display format",
+              "type": "droplist",
+              "defaultValue": "locale",
+              "help": "How dates appear on the trigger button. Times always show as HH:MM on the trigger.",
+              "values": [
+                { "title": "Locale default (e.g. 24 Aug 2026)", "value": "locale" },
+                { "title": "DD/MM/YYYY", "value": "DD/MM/YYYY" },
+                { "title": "DD-MM-YYYY", "value": "DD-MM-YYYY" },
+                { "title": "MM/DD/YYYY", "value": "MM/DD/YYYY" },
+                { "title": "YYYY-MM-DD", "value": "YYYY-MM-DD" }
+              ]
+            },
+            {
+              "name": "blockedDates",
+              "optionName": "blockedDates",
+              "attribute": "blocked-dates",
+              "title": "Blocked dates",
+              "type": "text",
+              "defaultValue": "",
+              "dataBindings": true,
+              "help": "YYYY-MM-DD list: comma-separated or JSON array. Those days are disabled; Apply is blocked if the range includes an unavailable day."
+            },
+            {
+              "name": "colorScheme",
+              "optionName": "colorScheme",
+              "attribute": "color-scheme",
+              "title": "Color scheme",
+              "type": "droplist",
+              "defaultValue": "dark",
+              "help": "Dark or light fixed theme; auto follows the visitor's system preference.",
+              "values": [
+                { "title": "Dark", "value": "dark" },
+                { "title": "Light", "value": "light" },
+                { "title": "Auto (system)", "value": "auto" }
+              ]
+            },
+            {
+              "name": "placement",
+              "optionName": "placement",
+              "attribute": "placement",
+              "title": "Popover placement",
+              "type": "droplist",
+              "defaultValue": "modal",
+              "help": "Modal: centre inside nearest modal dialog when found. Trigger: anchor below the trigger button.",
+              "values": [
+                { "title": "Modal (centred in dialog)", "value": "modal" },
+                { "title": "Trigger (below button)", "value": "trigger" }
+              ]
+            },
+            {
+              "name": "modalSelector",
+              "optionName": "modalSelector",
+              "attribute": "modal-selector",
+              "title": "Modal selector",
+              "type": "text",
+              "defaultValue": ".modal.show,.modal",
+              "help": "Comma-separated closest() selectors for modal centre mode."
+            },
+            {
+              "name": "startDateLabel",
+              "optionName": "startDateLabel",
+              "attribute": "start-date-label",
+              "title": "Start date label",
+              "type": "text",
+              "defaultValue": "Start date",
+              "dataBindings": true
+            },
+            {
+              "name": "endDateLabel",
+              "optionName": "endDateLabel",
+              "attribute": "end-date-label",
+              "title": "End date label",
+              "type": "text",
+              "defaultValue": "End date",
+              "dataBindings": true
+            },
+            {
+              "name": "startTimeLabel",
+              "optionName": "startTimeLabel",
+              "attribute": "start-time-label",
+              "title": "Start time label",
+              "type": "text",
+              "defaultValue": "Start time",
+              "dataBindings": true
+            },
+            {
+              "name": "endTimeLabel",
+              "optionName": "endTimeLabel",
+              "attribute": "end-time-label",
+              "title": "End time label",
+              "type": "text",
+              "defaultValue": "End time",
+              "dataBindings": true
+            },
+            {
+              "name": "cancelLabel",
+              "optionName": "cancelLabel",
+              "attribute": "cancel-label",
+              "title": "Cancel label",
+              "type": "text",
+              "defaultValue": "Cancel",
+              "dataBindings": true
+            },
+            {
+              "name": "applyLabel",
+              "optionName": "applyLabel",
+              "attribute": "apply-label",
+              "title": "Apply label",
+              "type": "text",
+              "defaultValue": "Apply",
+              "dataBindings": true
+            },
+            {
+              "name": "designLabel",
+              "optionName": "designLabel",
+              "attribute": "design-label",
+              "title": "Design canvas label",
+              "type": "text",
+              "defaultValue": "Great Range Time Picker"
+            }
+          ]
+        }
+      ],
+      "children": [],
+      "allowed_children": {},
+      "copyFiles": [
+        {
+          "src": "includes/dmx-great-range-time-picker.js",
+          "dst": "js/dmx-great-range-time-picker.js"
+        },
+        {
+          "src": "includes/dmx-great-range-time-picker.css",
+          "dst": "css/dmx-great-range-time-picker.css"
+        }
+      ],
+      "linkFiles": [
+        {
+          "src": "css/dmx-great-range-time-picker.css",
+          "type": "css"
+        },
+        {
+          "src": "js/dmx-great-range-time-picker.js",
+          "type": "js",
+          "defer": true
+        }
+      ],
+      "cssOrder": [
+        "dmx-great-range-time-picker.css"
+      ],
+      "jsOrder": [
+        "dmx-great-range-time-picker.js"
+      ],
+      "events": [
+        {
+          "name": "changed",
+          "title": "Range changed",
+          "description": "Fires when the user applies a new range. Detail: dateFrom, dateTo, timeFrom, timeTo, preset."
+        }
+      ]
+    }
+  ],
+  "attributes": [],
+  "events": []
+}

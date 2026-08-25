@@ -1,0 +1,22 @@
+<!-- Booking modal snippet — Great Range Time Picker -->
+<dmx-great-range-time-picker
+  id="eventRange"
+  date-from="2026-08-24"
+  date-to="2026-08-24"
+  time-from="10:00"
+  time-to="12:00"
+  default-time-from="09:00"
+  default-time-to="17:00"
+  time-step="900"
+  display-format="DD/MM/YYYY"
+  color-scheme="light"
+  placement="modal"
+  blocked-dates="2026-08-25,2026-08-27"
+  dmx-on:changed="eventRangeChanged($event)"
+></dmx-great-range-time-picker>
+
+<!-- Server Connect / form hidden fields (optional names on the component) -->
+<input type="hidden" name="event_date_from" value="{{eventRange.data.dateFrom}}">
+<input type="hidden" name="event_time_from" value="{{eventRange.data.timeFrom}}">
+<input type="hidden" name="event_date_to" value="{{eventRange.data.dateTo}}">
+<input type="hidden" name="event_time_to" value="{{eventRange.data.timeTo}}">

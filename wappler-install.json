@@ -1,0 +1,36 @@
+{
+  "schema": 1,
+  "id": "great-range-time-picker",
+  "name": "Great Range Time Picker",
+  "version": "0.1.0",
+  "cloneDir": "greatRangeTimePicker",
+  "hasServerConnect": false,
+  "hasAppConnect": true,
+  "readme": "https://github.com/MrCheeseGit/greatRangeTimePicker#installation",
+  "appConnect": {
+    "directories": [
+      "extensions/app_connect/components",
+      "public/js",
+      "public/css"
+    ],
+    "copy": [
+      {
+        "src": "app_connect/components.hjson",
+        "dest": "extensions/app_connect/components/great_range_time_picker_components.hjson"
+      },
+      {
+        "src": "includes/dmx-great-range-time-picker.js",
+        "dest": "public/js/dmx-great-range-time-picker.js"
+      },
+      {
+        "src": "includes/dmx-great-range-time-picker.css",
+        "dest": "public/css/dmx-great-range-time-picker.css"
+      }
+    ],
+    "notes": [
+      "Requires Font Awesome (chevron icons) or swap icons in a future release.",
+      "npm: Project Settings → Extensions, npm install, Project Updater, then quit Wappler completely and reopen.",
+      "Quit Wappler completely and reopen after Git copy."
+    ]
+  }
+}
