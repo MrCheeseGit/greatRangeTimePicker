@@ -278,7 +278,8 @@
   align-items: stretch;
 }
 
-.gr-date-range--no-presets .gr-date-range__layout {
+.gr-date-range--no-presets .gr-date-range__layout,
+.gr-date-range__popover.gr-date-range--no-presets .gr-date-range__layout {
   grid-template-columns: minmax(0, 1fr);
 }
 

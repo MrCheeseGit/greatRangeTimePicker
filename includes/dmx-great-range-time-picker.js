@@ -424,6 +424,9 @@
     var popover = root.querySelector('.gr-date-range__popover');
     applyColorScheme(root, colorScheme);
     applyColorScheme(popover, colorScheme);
+    if (!showPresets) {
+      popover.classList.add('gr-date-range--no-presets');
+    }
     var presetsEl = root.querySelector('.gr-date-range__presets');
     var calendarsEl = root.querySelector('.gr-date-range__calendars');
     var fromInput = root.querySelector('.gr-date-range__from-input');
