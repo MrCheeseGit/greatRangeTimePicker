@@ -337,8 +337,8 @@
     if (!host) return null;
     options = options || {};
 
-    var tz = options.timezone || DEFAULT_TZ;
-    var locale = options.locale || 'en-GB';
+    var tz = normalizeTimezone(options.timezone, DEFAULT_TZ);
+    var locale = normalizeLocale(options.locale, 'en-GB');
     var displayFormat = normalizeDisplayFormat(options.displayFormat);
     var colorScheme = normalizeColorScheme(options.colorScheme);
     var blockedSet = buildBlockedSet(options.blockedDates);
@@ -911,6 +911,33 @@
     return propString(node.getAttribute(attr), fallback);
   }
 
+  function readBoundField(node, attr, componentValue, fallback) {
+    if (componentValue != null && componentValue !== '' && !isPlaceholder(componentValue)) {
+      return String(componentValue).trim();
+    }
+    return readAttr(node, attr, fallback);
+  }
+
+  function normalizeTimezone(value, fallback) {
+    var tz = propString(value, fallback || DEFAULT_TZ);
+    try {
+      Intl.DateTimeFormat('en-US', { timeZone: tz }).format(new Date());
+      return tz;
+    } catch (e) {
+      return propString(fallback, DEFAULT_TZ);
+    }
+  }
+
+  function normalizeLocale(value, fallback) {
+    var locale = propString(value, fallback || 'en-GB');
+    try {
+      Intl.DateTimeFormat(locale).format(new Date());
+      return locale;
+    } catch (e) {
+      return propString(fallback, 'en-GB');
+    }
+  }
+
   function readBoolAttr(node, attr, fallback) {
     if (!node || !node.hasAttribute(attr)) return !!fallback;
     var v = node.getAttribute(attr);
@@ -1028,13 +1055,14 @@
           return;
         }
 
-        var tz = propString(this.timezone, 'UTC');
+        var tz = normalizeTimezone(readBoundField(node, 'timezone', this.timezone, 'UTC'));
         var preset = presetFromDefault(readAttr(node, 'default-preset', this.defaultPreset));
         var seed = initialRangeFromPreset(preset, tz);
         var from = propString(this.dateFrom, seed.from);
         var to = propString(this.dateTo, seed.to);
         var timeFrom = propString(this.timeFrom, '');
         var timeTo = propString(this.timeTo, '');
+        var locale = normalizeLocale(readBoundField(node, 'locale', this.locale, 'en-GB'));
         var self = this;
 
         if (this._instance) {
@@ -1056,7 +1084,7 @@
           defaultTimeTo: propString(readAttr(node, 'default-time-to', this.defaultTimeTo), '23:59'),
           timeStep: propString(readAttr(node, 'time-step', this.timeStep), '900'),
           timezone: tz,
-          locale: propString(this.locale, 'en-GB'),
+          locale: locale,
           displayFormat: propString(readAttr(node, 'display-format', this.displayFormat), 'locale'),
           colorScheme: propString(readAttr(node, 'color-scheme', this.colorScheme), 'dark'),
           blockedDates: readBlockedDates(node, this.blockedDates),

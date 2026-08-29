@@ -4,7 +4,7 @@
 
 [![License: Mr Cheese Extension v1.0](https://img.shields.io/badge/License-Mr%20Cheese%20Extension%20v1.0-blue.svg)](https://www.mrcheese.co.uk/extension-license)
 ![Wappler](https://img.shields.io/badge/Wappler-App%20Connect-teal)
-![Version](https://img.shields.io/badge/version-0%2E1%2E1-green)
+![Version](https://img.shields.io/badge/version-0%2E2%2E0-green)
 
 Built by **[Mr Cheese](https://www.mrcheese.co.uk)** · Wappler extensions
 
@@ -91,6 +91,8 @@ Set **Start date**, **End date**, **Start time**, and **End time** explicitly fo
 
 **Show preset sidebar** defaults to off. Turn it on only when you want report-style quick ranges.
 
+Bind **Timezone** and **Locale** from your database or session (property panel data binding, or `dmx-bind` on the tag). Use IANA zones such as `Australia/Melbourne` or `Australia/Perth` for preset boundaries and Today.
+
 ```html
 <dmx-great-range-time-picker
   id="bookingRange"
@@ -103,6 +105,8 @@ Set **Start date**, **End date**, **Start time**, and **End time** explicitly fo
   time-step="900"
   display-format="DD/MM/YYYY"
   color-scheme="light"
+  dmx-bind:timezone="userProfile.data.timezone"
+  dmx-bind:locale="userProfile.data.locale"
   placement="modal"
   dmx-on:changed="console.log($event.detail)"
 ></dmx-great-range-time-picker>

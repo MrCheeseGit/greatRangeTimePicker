@@ -1,8 +1,8 @@
 # Changelog
 
-## 0.1.1
+## 0.2.0
 
-Fixes calendar layout when the preset sidebar is hidden and the popover is portaled to `document.body` (modal placement). The no-presets grid now applies on the portaled popover so dual calendars use the full width.
+**Timezone** and **Locale** are bindable in the Wappler property panel and via `dmx-bind:timezone` / `dmx-bind:locale`. Bind IANA zones from your database (e.g. `Australia/Melbourne`, `Australia/Perth`); invalid values fall back safely. The picker refreshes when bound values change.
 
 See [README](README.md) for features, installation, and usage.
 
