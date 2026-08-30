@@ -1,8 +1,8 @@
 # Changelog
 
-## 0.2.0
+## 0.2.1
 
-**Timezone** and **Locale** are bindable in the Wappler property panel and via `dmx-bind:timezone` / `dmx-bind:locale`. Bind IANA zones from your database (e.g. `Australia/Melbourne`, `Australia/Perth`); invalid values fall back safely. The picker refreshes when bound values change.
+Fixes `dmx-on:changed` firing: uses Wappler `dispatchEvent` instead of non-existent `dispatch`. Improves mobile layout with viewport-capped popover height, internal scrolling, and sticky Apply/Cancel on narrow screens.
 
 See [README](README.md) for features, installation, and usage.
 

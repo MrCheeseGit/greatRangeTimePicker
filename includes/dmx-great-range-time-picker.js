@@ -649,11 +649,15 @@
 
     function positionPopover() {
       var margin = 12;
+      var viewportH = viewportHeight();
+      var maxHeight = Math.max(260, viewportH - margin * 2);
       var width = Math.min(832, window.innerWidth - margin * 2);
       var dialog = options.placement === 'trigger' ? null : findModalDialog();
-      var height = popover.offsetHeight || 470;
       var left;
       var top;
+
+      popover.style.maxHeight = maxHeight + 'px';
+      var height = Math.min(popover.offsetHeight || 470, maxHeight);
 
       if (dialog) {
         var dialogRect = dialog.getBoundingClientRect();
@@ -665,14 +669,14 @@
         var rect = trigger.getBoundingClientRect();
         left = Math.min(Math.max(margin, rect.left), window.innerWidth - width - margin);
         top = rect.bottom + margin;
-        if (top + height > window.innerHeight - margin) {
+        if (top + height > viewportH - margin) {
           top = Math.max(margin, rect.top - height - margin);
         }
         popover.classList.remove('gr-date-range__popover--centered');
       }
 
       left = Math.min(Math.max(margin, left), window.innerWidth - width - margin);
-      top = Math.min(Math.max(margin, top), window.innerHeight - height - margin);
+      top = Math.min(Math.max(margin, top), viewportH - height - margin);
 
       popover.style.width = width + 'px';
       popover.style.left = left + 'px';
@@ -951,6 +955,21 @@
     return readAttr(node, 'blocked-dates', '');
   }
 
+  function viewportHeight() {
+    return (window.visualViewport && window.visualViewport.height) || window.innerHeight;
+  }
+
+  function emitComponentEvent(component, name, payload) {
+    if (!component) return;
+    if (typeof component.dispatchEvent === 'function') {
+      component.dispatchEvent(name, null, payload);
+      return;
+    }
+    if (typeof component.dispatch === 'function') {
+      component.dispatch(name, payload);
+    }
+  }
+
   function presetFromDefault(value) {
     var id = propString(value, 'custom');
     if (DEFAULT_PRESET_IDS.indexOf(id) === -1) return 'custom';
@@ -1125,7 +1144,7 @@
               var timeToInput = node.querySelector('input[name="' + timeToName + '"]');
               if (timeToInput) timeToInput.value = payload.timeTo;
             }
-            self.dispatch('changed', payload);
+            emitComponentEvent(self, 'changed', payload);
           },
         });
 

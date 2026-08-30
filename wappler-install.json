@@ -2,7 +2,7 @@
   "schema": 1,
   "id": "great-range-time-picker",
   "name": "Great Range Time Picker",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "cloneDir": "greatRangeTimePicker",
   "hasServerConnect": false,
   "hasAppConnect": true,
